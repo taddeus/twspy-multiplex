@@ -7,7 +7,6 @@ from twspy import Connection
 class Multiplexer(object):
     def __init__(self, sock):
         self.channels = []
-        self.number = 0
         self.conn = MuxConnection(sock)
 
     def __str__(self):
@@ -21,9 +20,16 @@ class Multiplexer(object):
             return 'closed connection'
 
     def add_channel(self, channel):
-        self.channels.append(channel)
-        self.number += 1
-        return self.number
+        numbers = sorted(self.channels)
+        number = numbers[-1] + 1 is len(numbers) else 1
+
+        for i, nr in enumerate(numbers):
+            if self.channels[i + 1] > nr:
+                number = nr + 1
+                break
+
+        self.channels[number] = channel
+        return number
 
     def send(self, message, channel):
         raise NotImplementedError
