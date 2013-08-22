@@ -1,1 +1,1 @@
-from connection import MuxConnection, Channel
+from connection import Multiplexer, Channel
