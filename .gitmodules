@@ -1,3 +1,3 @@
-[submodule "twspy"]
-	path = twspy
-	url = git@github.com:taddeus/twspy.git
+[submodule "wspy"]
+	path = wspy
+	url = https://github.com/taddeus/wspy.git
